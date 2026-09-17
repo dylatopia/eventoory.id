@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontak — Eventoory.id</title>
+<meta name="description" content="Hubungi Eventoory.id via WhatsApp atau email untuk request quote dan pertanyaan seputar kelengkapan organisasi.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/owl-mark.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img data-logo-dark alt="Eventoory.id"></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html" data-page="home">Beranda</a>
+      <a href="catalog.html" data-page="catalog">Katalog</a>
+      <a href="about.html" data-page="about">Tentang</a>
+      <a href="faq.html" data-page="faq">FAQ</a>
+      <a href="contact.html" data-page="contact">Kontak</a>
+    </div>
+    <a href="checkout.html" class="nav-cta">🛒 Keranjang <span class="cart-badge" style="display:none">0</span></a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="eyebrow">Kontak</div>
+    <h1>Punya pertanyaan? Sapa kami.</h1>
+    <p>Admin kami siap membantu request quote, konsultasi desain, dan info produk.</p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow">Info Kontak</div>
+        <h2 class="section-title" style="margin-bottom:20px">Terhubung dengan kami.</h2>
+
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div><strong style="color:var(--navy)">WhatsApp</strong><br><a id="wa-display" style="color:var(--gray-500)"></a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div><strong style="color:var(--navy)">Email</strong><br><a id="email-display" style="color:var(--gray-500)"></a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div><strong style="color:var(--navy)">Alamat</strong><br><span id="address-display" style="color:var(--gray-500)"></span></div>
+        </div>
+
+        <div class="map-wrap">
+          <iframe id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div>
+        <div class="checkout-card">
+          <h3 style="margin-top:0;color:var(--navy)">Kirim Pesan</h3>
+          <p style="color:var(--gray-500);font-size:14px;margin-top:0">Pesanmu akan diteruskan ke WhatsApp admin.</p>
+          <form data-contact-form>
+            <div class="form-group"><label>Nama</label><input name="name" required></div>
+            <div class="form-group"><label>Email</label><input name="email" type="email" required></div>
+            <div class="form-group"><label>Pesan</label><textarea name="message" rows="5" required></textarea></div>
+            <button class="btn btn-primary btn-block" type="submit">Kirim via WhatsApp →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" data-footer></footer>
+
+<script src="js/config.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const C = window.EVENTOORY_CONFIG;
+  document.getElementById("wa-display").textContent = C.contact.whatsappDisplay;
+  document.getElementById("wa-display").href = `https://wa.me/${C.contact.whatsapp}`;
+  document.getElementById("email-display").textContent = C.contact.email;
+  document.getElementById("email-display").href = "mailto:" + C.contact.email;
+  document.getElementById("address-display").textContent = C.contact.address;
+  document.getElementById("map-iframe").src = C.contact.mapsEmbed;
+</script>
+</body>
+</html>

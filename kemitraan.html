@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kemitraan & Sponsorship — Eventoory.id</title>
+<meta name="description" content="Ajukan proposal kerja sama sponsorship atau partnership untuk acara organisasimu bersama Eventoory.id.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/owl-mark.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="kemitraan">
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img data-logo-dark alt="Eventoory.id"></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html" data-page="home">Beranda</a>
+      <a href="catalog.html" data-page="catalog">Katalog</a>
+      <a href="about.html" data-page="about">Tentang</a>
+      <a href="faq.html" data-page="faq">FAQ</a>
+      <a href="kemitraan.html" data-page="kemitraan">Kemitraan</a>
+      <a href="contact.html" data-page="contact">Kontak</a>
+    </div>
+    <a href="checkout.html" class="nav-cta">🛒 Keranjang <span class="cart-badge" style="display:none">0</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" style="padding:80px 0 60px">
+  <div class="container" style="text-align:center;max-width:720px;margin:0 auto">
+    <div class="hero-badge" style="display:inline-flex">🤝 Kemitraan &amp; Sponsorship</div>
+    <h1 style="margin-top:16px">Punya Acara yang Butuh Dukungan Dana atau Kegiatan?</h1>
+    <p class="lead">Ajukan proposal kegiatan kamu ke Eventoory. Kami terbuka untuk kerja sama partnership maupun sponsorship bagi organisasi/panitia se-Indonesia.</p>
+    <div class="hero-actions" style="justify-content:center">
+      <a href="#syarat-ketentuan" class="btn btn-primary">Lihat Syarat &amp; Ketentuan ↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION 1: SYARAT & KETENTUAN -->
+<section id="syarat-ketentuan">
+  <div class="container">
+    <div class="section-head-center" style="text-align:center">
+      <div class="section-eyebrow">Sebelum Mengajukan</div>
+      <h2 class="section-title">Syarat &amp; Ketentuan Proposal</h2>
+      <p class="section-subtitle">Pastikan acara/organisasi kamu memenuhi ketentuan berikut sebelum mengajukan proposal kerja sama.</p>
+    </div>
+
+    <!-- TODO (Salma): ganti list di bawah dengan syarat & ketentuan asli -->
+    <ol style="max-width:640px;margin:0 auto;color:var(--gray-500);line-height:1.8">
+      <li>Proposal diajukan minimal H-... hari sebelum acara berlangsung.</li>
+      <li>Acara diselenggarakan oleh organisasi/lembaga resmi (kampus, sekolah, komunitas, dsb).</li>
+      <li>Menyertakan proposal lengkap (latar belakang, susunan acara, estimasi peserta, kebutuhan sponsorship).</li>
+      <li>Bersedia mencantumkan logo Eventoory.id sebagai partner/sponsor di media publikasi acara.</li>
+      <li>[Tambahkan syarat lain di sini]</li>
+    </ol>
+
+    <div style="text-align:center;margin-top:32px">
+      <a href="#partnership-sponsorship" class="btn btn-ghost">Sudah Memenuhi Syarat? Lanjut →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: PARTNERSHIP & SPONSORSHIP -->
+<section id="partnership-sponsorship" style="background:var(--cream)">
+  <div class="container">
+    <div class="section-head-center" style="text-align:center">
+      <div class="section-eyebrow">Pilih Jenis Kerja Sama</div>
+      <h2 class="section-title">Partnership atau Sponsorship?</h2>
+    </div>
+
+    <div class="feature-grid" style="grid-template-columns:repeat(2, minmax(0,1fr));max-width:800px;margin:0 auto">
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Partnership</h3>
+        <p style="color:var(--gray-500);font-size:14px">Kerja sama non-tunai — Eventoory menyediakan kelengkapan acara (banner, ID card, dsb) sebagai bentuk dukungan kegiatan kamu.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Sponsorship</h3>
+        <p style="color:var(--gray-500);font-size:14px">Dukungan dana untuk kegiatan kamu, dengan timbal balik berupa penempatan logo/brand Eventoory.id di acara.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px">
+      <a href="#" data-wa-proposal target="_blank" class="btn btn-primary">📩 Kirim Proposal via WhatsApp</a>
+      <!-- TODO (Salma): kalau mau pakai Google Form / upload Drive, ganti link di atas -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer" data-footer></footer>
+
+<script src="js/config.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cfg = window.EVENTOORY_CONFIG;
+    const link = document.querySelector('[data-wa-proposal]');
+    if (link && cfg) {
+      const msg = encodeURIComponent('Halo Eventoory! Saya ingin mengajukan proposal kerja sama (partnership/sponsorship) untuk acara saya.');
+      link.href = `https://wa.me/${cfg.contact.whatsapp}?text=${msg}`;
+    }
+  });
+</script>
+</body>
+</html>

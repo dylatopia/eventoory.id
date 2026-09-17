@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout — Eventoory.id</title>
+<meta name="description" content="Selesaikan request quote-mu. Admin akan menghubungi via WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="images/owl-mark.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img data-logo-dark alt="Eventoory.id"></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html" data-page="home">Beranda</a>
+      <a href="catalog.html" data-page="catalog">Katalog</a>
+      <a href="about.html" data-page="about">Tentang</a>
+      <a href="faq.html" data-page="faq">FAQ</a>
+      <a href="contact.html" data-page="contact">Kontak</a>
+    </div>
+    <a href="checkout.html" class="nav-cta">🛒 Keranjang <span class="cart-badge" style="display:none">0</span></a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <div class="eyebrow">Checkout</div>
+    <h1>Konfirmasi request quote.</h1>
+    <p>Data ini akan direkap admin untuk penawaran harga & desain.</p>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div data-checkout-success style="display:none;background:var(--cream);border:1px solid var(--yellow);border-radius:20px;padding:32px;text-align:center;margin-bottom:20px">
+      <div style="font-size:48px">✅</div>
+      <h2 style="color:var(--navy);margin:8px 0">Pesanan berhasil dikirim!</h2>
+      <p style="color:var(--gray-500)">Terima kasih! Admin Eventoory akan menghubungi kamu via WhatsApp dalam beberapa menit.</p>
+      <a href="catalog.html" class="btn btn-primary" style="margin-top:12px">Lanjut Belanja →</a>
+    </div>
+
+    <div class="checkout-grid">
+      <div class="checkout-card">
+        <h3 style="margin-top:0;color:var(--navy)">Informasi Pemesan</h3>
+        <form data-checkout-form>
+          <div class="form-grid">
+            <div class="form-group"><label>Nama Lengkap*</label><input name="customer" required></div>
+            <div class="form-group"><label>Nama Organisasi*</label><input name="organization" required></div>
+            <div class="form-group"><label>WhatsApp*</label><input name="phone" required placeholder="08xxxx"></div>
+            <div class="form-group"><label>Email</label><input name="email" type="email"></div>
+            <div class="form-group full"><label>Alamat Pengiriman</label><textarea name="address" rows="2"></textarea></div>
+            <div class="form-group full"><label>Catatan tambahan</label><textarea name="notes" rows="3"></textarea></div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px">Kirim Pesanan →</button>
+          <p style="font-size:12px;color:var(--gray-500);margin-top:10px;text-align:center">
+            Dengan mengirim, data pesanan disimpan &amp; kamu diarahkan ke WhatsApp admin.
+          </p>
+        </form>
+      </div>
+
+      <div class="checkout-card">
+        <h3 style="margin-top:0;color:var(--navy)">Ringkasan Pesanan</h3>
+        <div data-cart-list></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" data-footer></footer>
+
+<script src="js/config.js"></script>
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
