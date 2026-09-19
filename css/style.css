@@ -207,7 +207,7 @@ button { font-family: inherit; cursor: pointer; border: 0; }
 .hero {
   background:
     linear-gradient(135deg, rgba(11,31,77,0.88) 0%, rgba(11,31,77,0.96) 100%),
-    url('/images/foto-1.jpg');
+    url('images/foto-1.JPG');
   background-size: cover;
   background-position: center;
   color: var(--white);
