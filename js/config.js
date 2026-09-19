@@ -71,8 +71,8 @@ window.EVENTOORY_CONFIG = {
   ],
 
   contact: {
-    whatsapp: "6285777886653",     // format internasional tanpa '+'
-    whatsappDisplay: "+62 857-7788-6653",
+    whatsapp: "6285777104953",     // format internasional tanpa '+'
+    whatsappDisplay: "+62 857-7710-4953",
     email: "eventoory.id@gmail.com",
     address: "Jl. Dramaga Cantik No.22 Residence, Blok K, Dramaga, Kec. Dramaga, Kabupaten Bogor, Jawa Barat 16680",
     mapsEmbed:
