@@ -29,6 +29,12 @@ const STORES = [
 ];
 
 window.EVENTOORY_CONFIG = {
+
+  sheets: {
+    productsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQIwaKXHhPT-qybtSv6PSyp2XwhlEN2czwraWzwoY6jLxITrzvbV-cngjiBdhXKSLDGnFh-VaWdtnMS/pub?gid=0&single=true&output=csv",
+    tiersCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQIwaKXHhPT-qybtSv6PSyp2XwhlEN2czwraWzwoY6jLxITrzvbV-cngjiBdhXKSLDGnFh-VaWdtnMS/pub?gid=785795995&single=true&output=csv",
+  },
+
   brand: {
     name: "Eventoory.id",
     tagline: "#SolusiKelengkapanOrganisasimu",
@@ -76,7 +82,6 @@ window.EVENTOORY_CONFIG = {
   socials: {
     instagram: "https://instagram.com/eventoory.id",
     tiktok: "https://tiktok.com/@eventoory.id",
-    youtube: "https://youtube.com/@eventoory",
     email: "mailto:eventoory.id@gmail.com",
   },
 
@@ -97,3 +102,4 @@ window.EVENTOORY_CONFIG = {
     copyright: "© 2026 Eventoory.id — All rights reserved.",
   },
 };
+

@@ -20,9 +20,10 @@
       <a href="catalog.html" data-page="catalog">Katalog</a>
       <a href="about.html" data-page="about">Tentang</a>
       <a href="faq.html" data-page="faq">FAQ</a>
+            <a href="kemitraan.html" data-page="kemitraan">Kemitraan</a>
       <a href="contact.html" data-page="contact">Kontak</a>
     </div>
-    <a href="checkout.html" class="nav-cta">🛒 Keranjang <span class="cart-badge" style="display:none">0</span></a>
+    <a href="checkout.html" class="nav-cta">Keranjang <span class="cart-badge" style="display:none">0</span></a>
   </div>
 </nav>
 
@@ -54,8 +55,14 @@
           <div><strong style="color:var(--navy)">Alamat</strong><br><span id="address-display" style="color:var(--gray-500)"></span></div>
         </div>
 
-        <div class="map-wrap">
-          <iframe id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mapouter" style="position:relative; text-align:right; width:500px; height:450px;">
+          <div class="gmap_canvas" style="overflow:hidden; background:none!important; width:500px; height:450px;">
+            <iframe width="500px" height="450px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?q=Eventoory.id&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+          </div>
+          <a href="https://norsumediagroup.com/embed-google-map-website-free" target="_blank" rel="noopener noreferrer" class="gme-generated-link">Embed Map on Website for Free</a>
+          <style>
+          .mapouter{position:relative;text-align:right;} .gmap_canvas{overflow:hidden;background:none!important;} .gmap_canvas iframe{width:100%;height:100%;} .mapouter a{display:block;font-size:0.85em;text-align:center;padding:5px 0;color:#6c757d;text-decoration:none;} .gme-generated-link{display:none!important;}
+          </style>
         </div>
       </div>
 
@@ -78,7 +85,6 @@
 <footer class="footer" data-footer></footer>
 
 <script src="js/config.js"></script>
-<script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
   const C = window.EVENTOORY_CONFIG;

@@ -7,23 +7,65 @@
   const CFG = window.EVENTOORY_CONFIG;
   const CATEGORIES = window.EVENTOORY_CATEGORIES || [];
 
-  // ---------- Produk (langsung dari products.js, tanpa network call) ----------
-  function getAllProducts() {
-    return (window.EVENTOORY_PRODUCTS || []).filter((p) => p.available !== false);
+let ALL_PRODUCTS_CACHE = null;
+ 
+function parseCsv(url) {
+  return new Promise((resolve, reject) => {
+    Papa.parse(url, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: (res) => resolve(res.data),
+      error: reject,
+    });
+  });
+}
+ 
+async function fetchProducts() {
+  if (ALL_PRODUCTS_CACHE) return ALL_PRODUCTS_CACHE;
+  try {
+    const [rows, tierRows] = await Promise.all([
+      parseCsv(CFG.sheets.productsCsvUrl),
+      parseCsv(CFG.sheets.tiersCsvUrl),
+    ]);
+ 
+    const products = rows
+      .filter((r) => String(r.available).toLowerCase() === "true" && r.id)
+      .map((r) => ({
+        id: r.id.trim(),
+        name: r.name,
+        category: r.category,
+        image: r.image_url,
+        description: r.description,
+        materialLink: r.material_link,
+        colorLink: r.color_link,
+        priceTiers: tierRows
+          .filter((t) => t.product_id === r.id.trim())
+          .map((t) => ({
+            minQty: Number(t.min_qty),
+            maxQty: t.max_qty ? Number(t.max_qty) : null,
+            pricePerUnit: Number(t.price_per_unit),
+          })),
+      }));
+ 
+    ALL_PRODUCTS_CACHE = products;
+    return products;
+  } catch (err) {
+    console.error("Gagal memuat produk dari Google Sheets:", err);
+    return [];
   }
-
-  function lowestPrice(product) {
-    if (!product.priceTiers || !product.priceTiers.length) return null;
-    return Math.min(...product.priceTiers.map((t) => Number(t.pricePerUnit)));
-  }
-
-  function findTierPrice(product, qty) {
-    if (!product.priceTiers || !product.priceTiers.length) return null;
-    const match = product.priceTiers.find(
-      (t) => qty >= t.minQty && (t.maxQty === null || t.maxQty === undefined || qty <= t.maxQty)
-    );
-    return match ? Number(match.pricePerUnit) : null;
-  }
+}
+function lowestPrice(product) {
+  if (!product.priceTiers || !product.priceTiers.length) return null;
+  return Math.min(...product.priceTiers.map((t) => Number(t.pricePerUnit)));
+}
+function findTierPrice(product, qty) {
+  if (!product.priceTiers || !product.priceTiers.length) return null;
+  const match = product.priceTiers.find(
+    (t) => qty >= t.minQty && (t.maxQty === null || qty <= t.maxQty)
+  );
+  return match ? Number(match.pricePerUnit) : null;
+}
 
   // ---------- Helpers ----------
   const $ = (s, r = document) => r.querySelector(s);
@@ -117,10 +159,9 @@
               <img src="${CFG.brand.logoLight}" alt="${CFG.brand.name}">
               <p>${CFG.footer.description}</p>
               <div class="footer-socials">
-                <a href="${CFG.socials.instagram}" target="_blank" aria-label="Instagram">IG</a>
-                <a href="${CFG.socials.tiktok}" target="_blank" aria-label="TikTok">TT</a>
-                <a href="${CFG.socials.youtube}" target="_blank" aria-label="YouTube">YT</a>
-                <a href="${CFG.socials.email}" aria-label="Email">@</a>
+                <a href="${CFG.socials.instagram}" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.7.27 1.2.6 1.7 1.1.5.5.9 1 1.1 1.7.24.6.4 1.3.46 2.4.06 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.27.7-.6 1.2-1.1 1.7-.5.5-1 .9-1.7 1.1-.6.24-1.3.4-2.4.46-1.1.06-1.4.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46-.7-.27-1.2-.6-1.7-1.1-.5-.5-.9-1-1.1-1.7-.24-.6-.4-1.3-.46-2.4C2 15 2 14.7 2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.27-.7.6-1.2 1.1-1.7.5-.5 1-.9 1.7-1.1.6-.24 1.3-.4 2.4-.46C9 2 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
+                <a href="${CFG.socials.tiktok}" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16.6 2c.3 2.3 1.7 3.9 4 4.1v3c-1.4.1-2.8-.3-4-1.1v6.6c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.3 0 .6 0 1 .1v3.1c-.3-.1-.6-.2-1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V2h3z"/></svg></a>
+                <a href="${CFG.socials.email}" aria-label="Email"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M2 5.5h20v13H2v-13zm2 1.2v.4l8 5.8 8-5.8v-.4H4zm16 2.4-7.4 5.4a1 1 0 0 1-1.2 0L4 9.1v8.4h16V9.1z"/></svg></a>
               </div>
             </div>
             <div>
@@ -144,7 +185,6 @@
             <div>
               <h5>Akun</h5>
               <ul>
-                <li><a href="admin.html">Admin Panel</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
               </ul>
             </div>
@@ -159,7 +199,7 @@
   }
 
   // ---------- Home page ----------
-  function initHome() {
+  async function initHome() {
     const hero = $("[data-hero]");
     if (hero) {
       hero.innerHTML = `
@@ -176,9 +216,9 @@
               <div class="hero-tag">${CFG.brand.tagline}</div>
             </div>
             <div class="hero-visual">
-              <div class="hero-chip top-left"><span class="dot">✨</span> Free Design<br><small style="font-weight:400;color:#6B7280">Konsultasi gratis</small></div>
+              <div class="hero-chip top-left"><span class="dot">✨</span> 70+ Produk<br><small style="font-weight:400;color:#6B7280">Produk Bervariasi</small></div>
               <img src="${CFG.brand.owlMark}" alt="Eventoory owl">
-              <div class="hero-chip bottom-right"><span class="dot">🤝</span> 20+ Konveksi<br><small style="font-weight:400;color:#6B7280">Partner terpercaya</small></div>
+              <div class="hero-chip bottom-right"><span class="dot">🤝</span> Kemitraan<br><small style="font-weight:400;color:#6B7280">Partnership & Sponsorhsip</small></div>
             </div>
           </div>
         </div>
@@ -201,7 +241,7 @@
 
     const feat = $("[data-featured-products]");
     if (feat) {
-      const products = getAllProducts();
+      const products = await fetchProducts();
       feat.innerHTML = products.slice(0, 8).map(renderProductCard).join("");
       bindProductClicks(feat);
     }
@@ -244,13 +284,13 @@
   }
 
   // ---------- Catalog page ----------
-  function initCatalog() {
+  async function initCatalog() {
     const grid = $("[data-catalog-grid]");
     const chips = $("[data-catalog-chips]");
     const search = $("[data-catalog-search]");
     if (!grid) return;
 
-    const products = getAllProducts();
+    const products = await fetchProducts();
     const params = new URLSearchParams(location.search);
     let currentCat = params.get("cat") || "Semua";
     let currentQuery = "";
@@ -291,7 +331,7 @@
 
   // ---------- Product modal ----------
   function openProductModal(id) {
-    const p = getAllProducts().find((x) => x.id === id);
+    const p = (ALL_PRODUCTS_CACHE || []).find((x) => x.id === id);
     if (!p) return;
     let modal = $("#product-modal");
     if (!modal) {
@@ -459,12 +499,12 @@
   }
 
   // ---------- Boot ----------
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", async () => {
     initNav();
     fillLayout();
     injectWaFloat();
-    initHome();
-    initCatalog();
+    await initHome();
+    await initCatalog();
     initCheckout();
     initFAQ();
     initContact();
