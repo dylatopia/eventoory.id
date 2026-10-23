@@ -71,8 +71,8 @@ window.EVENTOORY_CONFIG = {
   ],
 
   contact: {
-    whatsapp: "6285777104953",     // format internasional tanpa '+'
-    whatsappDisplay: "+62 857-7710-4953",
+    whatsapp: "6285777886653",     // format internasional tanpa '+'
+    whatsappDisplay: "+62 857-7788-6653",
     email: "eventoory.id@gmail.com",
     address: "Jl. Dramaga Cantik No.22 Residence, Blok K, Dramaga, Kec. Dramaga, Kabupaten Bogor, Jawa Barat 16680",
     mapsEmbed:
@@ -92,8 +92,11 @@ window.EVENTOORY_CONFIG = {
     `Halo Eventoory! Saya ingin request quote:\n\n` +
     `Nama: ${payload.customer || "-"}\n` +
     `Organisasi: ${payload.organization || "-"}\n` +
-    `WA: ${payload.phone || "-"}\n\n` +
+    `WA: ${payload.phone || "-"}\n` +
+    `Email: ${payload.email || "-"}\n` +
+    `Alamat: ${payload.address || "-"}\n\n` +
     `Pesanan:\n${payload.items || "-"}\n\n` +
+    `Total: Rp${(payload.total || 0).toLocaleString("id-ID")}\n` +
     `Catatan: ${payload.notes || "-"}`,
 
   footer: {
