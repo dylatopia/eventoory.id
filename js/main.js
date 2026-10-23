@@ -455,11 +455,15 @@ function findTierPrice(product, qty) {
         if (!items.length) return toast("Keranjang masih kosong.", "error");
         const data = Object.fromEntries(new FormData(form).entries());
         const orderNumber = genOrderNumber();
+        const subtotal = items.reduce((sum, it) => sum + Number(it.unitPrice) * Number(it.quantity), 0);
 
         const waMsg = CFG.waMessageTemplate({
           customer: data.customer,
           organization: data.organization,
           phone: data.phone,
+          email: data.email,
+          address: data.address,
+          total: subtotal,
           items: items.map((i) => `• ${i.name} — ${i.quantity} pcs (Rp${(i.unitPrice * i.quantity).toLocaleString("id-ID")})${i.notes ? ` — ${i.notes}` : ""}`).join("\n"),
           notes: `${data.notes || "-"}\n\nNo. Order: ${orderNumber}`,
         });
