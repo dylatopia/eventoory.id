@@ -207,7 +207,7 @@ button { font-family: inherit; cursor: pointer; border: 0; }
 .hero {
   background:
     linear-gradient(135deg, rgba(11,31,77,0.88) 0%, rgba(11,31,77,0.96) 100%),
-    url('images/foto-1.JPG');
+    url('/images/foto-1.jpg');
   background-size: cover;
   background-position: center;
   color: var(--white);
@@ -1072,7 +1072,7 @@ section.location-section .section-eyebrow { color: var(--navy-800); }
 
 .location-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   align-items: start;
 }
@@ -1105,3 +1105,76 @@ section.location-section .section-eyebrow { color: var(--navy-800); }
   border-radius: 16px;
 }
 section.location-section { background: var(--cream) !important; }
+
+@media (max-width: 960px) {
+  section.why-section .feature-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  section.why-section .feature-card:nth-child(1),
+  section.why-section .feature-card:nth-child(2),
+  section.why-section .feature-card:nth-child(3),
+  section.why-section .feature-card:nth-child(4),
+  section.why-section .feature-card:nth-child(5) {
+    grid-column: auto !important;
+  }
+}
+@media (max-width: 600px) {
+  section.why-section .feature-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 960px) {
+  .hero-chip.top-left { left: 8px; top: -16px; }
+  .hero-chip.bottom-right { right: 8px; bottom: -16px; }
+}
+
+/* ===== RESPONSIVE LANJUTAN ===== */
+
+/* Location map grid — belum ada breakpoint sama sekali */
+@media (max-width: 960px) {
+  .location-grid { grid-template-columns: 1fr; }
+}
+
+/* Why Eventoory — dipaksa 6 kolom, perlu collapse */
+@media (max-width: 960px) {
+  section.why-section .feature-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  section.why-section .feature-card:nth-child(n) { grid-column: auto !important; }
+}
+@media (max-width: 600px) {
+  section.why-section .feature-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Hero chip — overflow di tablet (641–960px belum ke-reset) */
+@media (max-width: 960px) {
+  .hero-chip.top-left { left: 8px; top: -16px; }
+  .hero-chip.bottom-right { right: 8px; bottom: -16px; }
+}
+
+/* About image — height:100% bisa collapse/gepeng saat grid jadi 1 kolom */
+@media (max-width: 960px) {
+  .about-image { height: auto; aspect-ratio: 4/3; }
+}
+
+/* Partner marquee logos — 150px kegedean relatif ke layar HP */
+@media (max-width: 640px) {
+  .marquee-content img { height: 80px; margin: 0 12px; }
+  .partners-section { padding: 36px 16px; margin: 0 12px 16px; }
+}
+@media (max-width: 420px) {
+  .marquee-content img { height: 60px; }
+}
+
+/* Testimoni/Partners/Location box margin — kurangi di HP biar gak sempit */
+@media (max-width: 640px) {
+  .testimoni-section, .partners-section, section.location-section {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Kemitraan feature-grid cols-2/cols-3 — pastikan konsisten di semua breakpoint tablet */
+@media (max-width: 768px) {
+  .why-section .feature-grid.cols-2,
+  .why-section .feature-grid.cols-3 { grid-template-columns: 1fr !important; }
+}
