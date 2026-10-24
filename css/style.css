@@ -1190,3 +1190,16 @@ section.location-section { background: var(--cream) !important; }
   .nav-cta { order: 3; justify-self: end; }
   .nav-links { order: 4; grid-column: 1 / -1; }
 }
+
+/* Font-size otomatis menyesuaikan device — besar di desktop, proporsional di HP */
+p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !important; line-height: 1.7; }
+.section-subtitle { font-size: clamp(14px, 3.5vw, 15px); }
+
+/* Margin bawah konsisten biar teks nggak nempel ke elemen berikutnya */
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  p { margin-bottom: 14px; }
+  .about-grid > div:last-child p:last-child { margin-bottom: 0; }
+  .section-title { margin-bottom: 16px; }
+  h1, h2, h3, h4 { margin-bottom: 10px; }
+}
