@@ -1178,3 +1178,15 @@ section.location-section { background: var(--cream) !important; }
   .why-section .feature-grid.cols-2,
   .why-section .feature-grid.cols-3 { grid-template-columns: 1fr !important; }
 }
+
+@media (max-width: 640px) {
+  .nav-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+  .nav-toggle { order: 1; justify-self: start; display: block; }
+  .nav-logo { order: 2; justify-self: center; }
+  .nav-cta { order: 3; justify-self: end; }
+  .nav-links { order: 4; grid-column: 1 / -1; }
+}
