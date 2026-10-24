@@ -1203,3 +1203,13 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
   .section-title { margin-bottom: 16px; }
   h1, h2, h3, h4 { margin-bottom: 10px; }
 }
+
+@media (max-width: 640px) {
+  section > p, section > ol, section > ul,
+  section > .about-grid, section > .contact-grid { padding: 0 20px; }
+}
+
+@media (max-width: 640px) {
+  section ol, section ul { padding-left: 32px; }
+  .container { padding: 0 20px; }
+}
