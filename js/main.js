@@ -502,6 +502,51 @@ function findTierPrice(product, qty) {
     });
   }
 
+// ---------- Scroll reveal ----------
+function initScrollReveal() {
+  const targets = $$(".feature-card, .product-card, .testi-card, .step, .location-store, .section-head-center");
+  targets.forEach((el) => el.classList.add("reveal"));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  targets.forEach((el) => io.observe(el));
+}
+
+// ---------- Animated stat counter ----------
+function initStatCounters() {
+  const stats = $(".stats");
+  if (!stats) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      $$(".stat-value", stats).forEach((el) => {
+        if (el.dataset.animated) return;
+        el.dataset.animated = "1";
+        const raw = el.textContent.trim();
+        const suffix = raw.replace(/[\d.,]/g, "");
+        const target = parseInt(raw.replace(/\D/g, ""), 10) || 0;
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * target);
+          el.textContent = current.toLocaleString("id-ID") + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+      io.unobserve(stats);
+    });
+  }, { threshold: 0.4 });
+  io.observe(stats);
+}
+  
   // ---------- Boot ----------
   document.addEventListener("DOMContentLoaded", async () => {
     initNav();
@@ -512,6 +557,7 @@ function findTierPrice(product, qty) {
     initCheckout();
     initFAQ();
     initContact();
-    // initAdmin() sengaja tidak dipanggil di sini — admin.html punya js/admin.js sendiri
+    initStatCounters();
+    initScrollReveal();
   });
 })();
