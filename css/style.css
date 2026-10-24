@@ -1213,3 +1213,6 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
   section ol, section ul { padding-left: 32px; }
   .container { padding: 0 20px; }
 }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
