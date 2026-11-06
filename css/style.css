@@ -1227,3 +1227,15 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
   border-radius: var(--radius-lg);
   z-index: 2;
 }
+
+@media (min-width: 641px) {
+  .partners-section,
+  .testimoni-section,
+  section.why-section,
+  section.location-section {
+    width: calc(100% - 48px);
+    max-width: var(--container);
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
