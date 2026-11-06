@@ -41,6 +41,7 @@ window.EVENTOORY_CONFIG = {
     logoLight: "images/logo-light.png", // logo untuk background gelap
     logoDark: "images/logo-dark.png",   // logo untuk background terang
     owlMark: "images/owl-mark.png",
+    heroPhoto: "images/store.png",
   },
 
   // Warna brand (juga bisa diubah di css/style.css → :root)
