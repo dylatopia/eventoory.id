@@ -1216,3 +1216,6 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+.wa-float { display: flex; align-items: center; justify-content: center; padding: 0; }
+.wa-float svg { display: block; width: 32px; height: 32px; flex-shrink: 0; }
