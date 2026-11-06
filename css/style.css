@@ -1219,3 +1219,11 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
 
 .wa-float { display: flex; align-items: center; justify-content: center; padding: 0; }
 .wa-float svg { display: block; width: 32px; height: 32px; flex-shrink: 0; }
+
+.hero-visual img.hero-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  z-index: 2;
+}
