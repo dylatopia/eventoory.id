@@ -217,7 +217,7 @@ function findTierPrice(product, qty) {
             </div>
             <div class="hero-visual">
               <div class="hero-chip top-left"><span class="dot">✨</span> 70+ Produk<br><small style="font-weight:400;color:#6B7280">Produk Bervariasi</small></div>
-              <img src="${CFG.brand.owlMark}" alt="Eventoory owl">
+              <img class="hero-photo" src="${CFG.brand.heroPhoto}" alt="Toko Eventoory.id">
               <div class="hero-chip bottom-right"><span class="dot">🤝</span> Kemitraan<br><small style="font-weight:400;color:#6B7280">Partnership & Sponsorhsip</small></div>
             </div>
           </div>
