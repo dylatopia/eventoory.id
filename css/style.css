@@ -1239,3 +1239,11 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
     margin-right: auto !important;
   }
 }
+
+@media (max-width: 960px) {
+  .hero-visual {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
