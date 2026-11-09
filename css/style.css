@@ -1247,3 +1247,6 @@ p, .about-grid p, .location-store p { font-size: clamp(14px, 3.8vw, 16px) !impor
     margin: 0 auto;
   }
 }
+
+.hero-chip.top-left { top: -16px; left: 16px; }
+.hero-chip.bottom-right { bottom: -16px; right: 16px; }
